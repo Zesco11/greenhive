@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <!-- Link your CSS here -->
+    <link rel="stylesheet" type="text/css" href="products.css">
+    <!-- Enhanced modal styles for Alibaba style -->
+    <style>
+        body {
+            font-family: Arial, sans-serif !important;
+        }
+        /* Styles for the More button */
+        .more-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .more-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+<!-- Search Bar -->
+<div style="display: flex; justify-content: center; margin-top: 50px; align-items: center;">
+  <input type="text" placeholder="Search" id="searchInput" style="width: 600px; padding: 8px; font-size: 16px; border: 1px solid #ccc; border-radius: 4px; text-align: center;" />
+</div>
+
+<script>
+  // Add event listener for Enter key in the search input
+  document.getElementById('searchInput').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+      performSearch();
+    }
+  });
+
+  function performSearch() {
+    const query = document.getElementById('searchInput').value.toLowerCase();
+
+    // Get all product cards
+    const products = document.querySelectorAll('.product-card');
+
+    products.forEach(card => {
+      const title = card.querySelector('.product-title').textContent.toLowerCase();
+      const desc = card.querySelector('.product-desc').textContent.toLowerCase();
+
+      // Check if query is in title or description
+      if (title.includes(query) || desc.includes(query)) {
+        card.style.display = ''; // Show
+      } else {
+        card.style.display = 'none'; // Hide
+      }
+    });
+  }
+</script>
+<script>
+function search() {
+  const query = document.getElementById('searchInput').value;
+  alert('You searched for: ' + query);
+}
+</script>
+
+<!-- Navigation Bar -->
+<div class="navbar">
+  <a href="index.html" class="nav-button">Home</a>
+  <a href="products.html" class="nav-button">Products</a>
+  <a href="About Page.html" class="nav-button">About</a>
+  <a href="contact.html" class="nav-button">Contact</a>
+</div>
+
+<!-- Header with cart icon -->
+<div class="header-container">
+  <div class="top-right-below-nav">
+      <!-- Button for accessibility -->
+      <button id="cartButton" style="background:none; border:none; cursor:pointer;">
+        <img src="shopping-cart.png" alt="Cart" width="35" height="35" />
+        <span id="cart-count">0</span>
+      </button>
+  </div>
+</div>
+
+<!-- Main Content & Products -->
+<div class="main-content">
+  <main>
+    <!-- All product cards with data attributes -->
+    <div class="row">
+      <div class="product-card">
+        <div class="price-badge">P120.00</div>
+        <img src="mixed.jpg" alt="Mixed Vegetable Basket" class="product-image" />
+        <div class="product-title">1. Mixed Vegetable Basket</div>
+        <div class="product-desc">
+          A colorful mix of seasonal, organic vegetables - perfect for your daily nutrition.
+        </div>
+        <button class="buy-btn" data-name="1. Mixed Vegetable Basket" data-image="mixed.jpg">buy</button>
+      </div>
+      <div class="product-card second">
+        <div class="price-badge">P80.00</div>
+        <img src="mixed2.jpg" alt="Fresh Fruit Basket" class="product-image" />
+        <div class="product-title">2. Fresh Fruit Basket</div>
+        <div class="product-desc">
+          A selection of fresh, organic fruits to boost your health and energy.
+        </div>
+        <button class="buy-btn" data-name="2. Fresh Fruit Basket" data-image="mixed2.jpg">buy</button>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="product-card">
+        <div class="price-badge">P15.00</div>
+        <img src="peppersss.png" alt="Vegetables" class="product-image" />
+        <div class="product-title">3. Organic Vegetables</div>
+        <div class="product-desc">
+          Add a fiery kick to your dishes with our farm fresh chili peppers
+        </div>
+        <button class="buy-btn" data-name="3. Organic Vegetables" data-image="peppersss.png">buy</button>
+      </div>
+      <div class="product-card second">
+        <div class="price-badge">P15.00</div>
+        <img src="redonions.jpg" alt="Herbs" class="product-image" />
+        <div class="product-title">4. Red Onions</div>
+        <div class="product-desc">
+          Aromatic and flavorful- great for cooking or eating raw with salads
+        </div>
+        <button class="buy-btn" data-name="4. Red Onions" data-image="redonions.jpg">buy</button>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="product-card">
+        <div class="price-badge">P60.00</div>
+        <img src="platter.jpg" alt="Mixed Vegetable Basket" class="product-image" />
+        <div class="product-title">5. Colorful Veggie Platter</div>
+        <div class="product-desc">
+          A vibrant assortment of bell peppers, garlic, and herbs-straight form the garden
+        </div>
+        <button class="buy-btn" data-name="5. Colorful Veggie Platter" data-image="platter.jpg">buy</button>
+      </div>
+      <div class="product-card second">
+        <div class="price-badge">P25.00</div>
+        <img src="green1.png" alt="Mixed Vegetable Basket" class="product-image" />
+        <div class="product-title">6. Fresh Broccoli</div>
+        <div class="product-desc">
+          Rich in fibre and antioxidants-streamed, roasted, or raw, its always a hit
+        </div>
+        <button class="buy-btn" data-name="6. Fresh Broccoli" data-image="green1.png">buy</button>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="product-card">
+        <div class="price-badge">P15.00</div>
+        <img src="carrots.jpg" alt="Vegetables" class="product-image" />
+        <div class="product-title">7. Carrots</div>
+        <div class="product-desc">
+          Add a fiery kick to your dishes with our farm fresh chili peppers
+        </div>
+        <button class="buy-btn" data-name="7. Carrots" data-image="carrots.jpg">buy</button>
+      </div>
+      <div class="product-card second">
+        <div class="price-badge">P15.00</div>
+        <img src="tomatos.jpg" alt="Herbs" class="product-image" />
+        <div class="product-title">8. Fresh Tomatos</div>
+        <div class="product-desc">
+          Aromatic herbs to enhance your cooking and health.
+        </div>
+        <button class="buy-btn" data-name="8. Fresh Tomatos" data-image="tomatos.jpg">buy</button>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- Cart Modal with Alibaba style -->
+<div id="cartModal" class="cart-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="cartModalLabel" aria-describedby="cartModalDesc">
+  <div class="cart-modal-content" role="document">
+    <div class="modal-header">
+      <h2 id="cartModalLabel">Your Cart</h2>
+      <span class="close-cart" aria-label="Close">&times;</span>
+    </div>
+    <!-- Table layout for cart items -->
+    <table>
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody id="cartItems"></tbody>
+    </table>
+    <!-- Totals -->
+    <div class="totals">
+      <div><span>Subtotal:</span> <span id="subtotal">P0.00</span></div>
+      <div><span>Sales Tax (10%):</span> <span id="salesTax">P0.00</span></div>
+      <div class="grand-total"><span>Grand Total:</span> <span id="grandTotal">P0.00</span></div>
+    </div>
+    <!-- Checkout Button -->
+    <button class="checkout-btn">Check out</button>
+  </div>
+</div>
+
+<!-- Add the More button at the very bottom -->
+<div style="text-align: center; margin: 30px 0;">
+  <button id="moreButton" class="more-btn">More</button>
+</div>
+
+<script>
+  const cartItems = [];
+  let cartCount = 0;
+
+  document.querySelectorAll('.buy-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const name = btn.getAttribute('data-name');
+      const image = btn.getAttribute('data-image');
+      // Save product info to cart array
+      cartItems.push({ name: name, image: image });
+      cartCount++;
+      document.getElementById('cart-count').textContent = cartCount;
+    });
+  });
+
+  const modal = document.getElementById('cartModal');
+  const closeBtn = document.querySelector('.close-cart');
+  const cartItemsDiv = document.getElementById('cartItems');
+
+  document.getElementById('cartButton').addEventListener('click', () => {
+    updateCartItems();
+    modal.style.display = 'flex';
+    modal.setAttribute('aria-hidden', 'false');
+  });
+
+  closeBtn.onclick = () => {
+    modal.style.display = 'none';
+    modal.setAttribute('aria-hidden', 'true');
+  }
+
+  window.onclick = (event) => {
+    if (event.target == modal) {
+      modal.style.display = 'none';
+      modal.setAttribute('aria-hidden', 'true');
+    }
+  }
+
+  function updateCartItems() {
+    const tbody = document.getElementById('cartItems');
+    tbody.innerHTML = '';
+
+    if (cartItems.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; color:#999;">Your cart is empty.</td></tr>';
+      document.getElementById('subtotal').textContent = 'P0.00';
+      document.getElementById('salesTax').textContent = 'P0.00';
+      document.getElementById('grandTotal').textContent = 'P0.00';
+      return;
+    }
+
+    let subtotalAmount = 0;
+    let quantity = 1; // assuming quantity is 1 for each item
+
+    cartItems.forEach(item => {
+      // Here, for simplicity, assume each item has a fixed price based on your data
+      // You could extend this to include prices in your cart array if needed
+      let priceStr = '';
+      if (item.name.includes('Vegetable Basket')) priceStr = 'P120.00';
+      else if (item.name.includes('Fruit Basket')) priceStr = 'P80.00';
+      else if (item.name.includes('Vegetables')) priceStr = 'P15.00';
+      else if (item.name.includes('Onions')) priceStr = 'P15.00';
+      else if (item.name.includes('Veggie Platter')) priceStr = 'P60.00';
+      else if (item.name.includes('Broccoli')) priceStr = 'P25.00';
+      else if (item.name.includes('Carrots')) priceStr = 'P15.00';
+      else if (item.name.includes('Tomatos')) priceStr = 'P15.00';
+      else priceStr = 'P0.00';
+
+      // Parse price
+      const priceNum = parseFloat(priceStr.replace('P', '').replace(',', '').replace('.00', ''));
+
+      const totalPrice = priceNum * quantity;
+      subtotalAmount += totalPrice;
+
+      // Format price and total
+      const formatPrice = 'P' + priceNum.toFixed(2);
+      const formatTotal = 'P' + totalPrice.toFixed(2);
+
+      tbody.innerHTML += `
+        <tr>
+          <td>${item.name}</td>
+          <td>${formatPrice}</td>
+          <td>${quantity}</td>
+          <td>${formatTotal}</td>
+        </tr>
+      `;
+    });
+
+    // Calculate tax and total
+    const salesTax = subtotalAmount * 0.10;
+    const grandTotal = subtotalAmount + salesTax;
+
+    document.getElementById('subtotal').textContent = 'P' + subtotalAmount.toFixed(2);
+    document.getElementById('salesTax').textContent = 'P' + salesTax.toFixed(2);
+    document.getElementById('grandTotal').textContent = 'P' + grandTotal.toFixed(2);
+  }
+
+  // Add event listener for the "More" button
+  document.getElementById('moreButton').addEventListener('click', function() {
+    window.location.href = 'more products.html';
+  });
+</script>
+</body>
+</html>

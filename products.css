@@ -1,0 +1,289 @@
+ <style>
+      body {
+        position: relative;
+        font-family: Arial, sans-serif;
+      }
+      
+      /* Overlay background with transparency and subtle blur */
+      .cart-modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(4px);
+        animation: fadeIn 0.3s;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+      }
+      
+      /* Modal container with rounded corners and shadow for depth */
+      .cart-modal-content {
+        background: #fff;
+        border-radius: 12px;
+        max-width: 700px;
+        width: 90%;
+        padding: 20px;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        display: flex;
+        flex-direction: column;
+        animation: slideIn 0.3s ease-out;
+      }
+      
+      /* Header styling */
+      .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+      }
+      
+      .modal-header h2 {
+        margin: 0;
+        font-size: 1.5em;
+        font-weight: 600;
+      }
+      
+      /* Close button styling */
+      .close-cart {
+        font-size: 1.8em;
+        cursor: pointer;
+        color: #999;
+        transition: color 0.2s;
+      }
+      
+      .close-cart:hover {
+        color: #333;
+      }
+      
+      /* Cart table styles */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-family: Arial, sans-serif;
+      }
+      
+      thead {
+        background-color: #f9f9f9;
+      }
+      
+      th, td {
+        padding: 12px 8px;
+        text-align: left;
+        border-bottom: 1px solid #eee;
+      }
+      
+      th {
+        font-weight: 600;
+      }
+      
+      /* Totals and checkout styles */
+      .totals {
+        margin-top: 20px;
+        width: 100%;
+        font-family: Arial, sans-serif;
+      }
+      
+      .totals div {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px 0;
+      }
+      
+      .grand-total {
+        font-weight: bold;
+        font-size: 1.2em;
+      }
+      
+      /* Checkout button styles */
+      .checkout-btn {
+        background: #ff6f61;
+        color: #fff;
+        border: none;
+        padding: 12px 25px;
+        border-radius: 8px;
+        font-size: 1em;
+        cursor: pointer;
+        transition: background 0.2s;
+        margin-top: 20px;
+        width: 100%;
+      }
+      
+      .checkout-btn:hover {
+        background: #ff3b2e;
+      }
+      
+      /* Animations */
+      @keyframes fadeIn {
+        from {opacity: 0;}
+        to {opacity: 1;}
+      }
+      @keyframes slideIn {
+        from {transform: translateY(-50px); opacity: 0;}
+        to {transform: translateY(0); opacity: 1;}
+      }
+    </style>
+body {
+  background-color: #F4F8EB; /* Light blue background */
+  margin: 0;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+ }
+
+ .search-btn {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 4px;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+/* Hover effect */
+.search-btn:hover {
+  background-color: #555; /* darker shade on hover */
+  transform: scale(1.05); /* slight enlarge on hover */
+}
+
+
+.navbar {
+  display: flex;
+  background-color: #81956E; /* green background */
+  padding: 10px 20px;
+  justify-content: center; /* Center the buttons */
+  }
+
+  /* Style for the buttons */
+  .nav-button {
+    background-color: #81956E; /* same color */
+    color: #eee; /* Text color */
+    border: none;
+    padding: 10px 20px;
+    margin: 0 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    text-decoration: none;
+  }
+
+  /* Hover effect for buttons */
+  .nav-button:hover {
+    background-color: beige;
+  }
+
+
+  /* Container wrapping nav and your element */
+  .header-container {
+    position: relative;
+  }
+
+  /* Position your element relative to the container */
+  .top-right-below-nav {
+    position: absolute;
+    top: 35px; /* Adjust this to be just below your nav height */
+    right: 41.7px;
+    z-index: 10;
+  }
+/* Style for cart count badge */
+#cart-count {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: red;
+  color: white;
+  border-radius: 40%;
+  padding: 2px 6px;
+  font-size: 14px;
+  font-weight: bold;
+  min-width: 9px;
+  text-align: center;
+}
+
+ main {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
+    max-width: 740px;
+    margin: 0 auto;
+  }
+
+  /* Each row contains two product cards */
+  .row {
+    display: flex;
+    width: 100%;
+  }
+
+  /* Style for the product cards */
+  .product-card {
+    background: #fff;
+    border-radius: 8px;
+    width: calc(50% - 10px); /* Adjusted to fit two per row with gap */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: transform 0.2s;
+    margin: 15px; /* adds space around each card */
+  }
+
+  /* Push second card to the right */
+  .second {
+    margin-left: auto;
+  }
+
+  /* Product image styling */
+  .product-image {
+    width: 100%;
+    height: 150px;
+    object-fit: contain;
+    border-radius: 4px;
+  }
+
+  /* Price badge styling */
+  .price-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #3b5998;
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.9em;
+  }
+
+  /* Product title styling */
+  .product-title {
+    font-weight: bold;
+    margin: 10px 0 5px 0;
+  }
+
+  /* Product description styling */
+  .product-desc {
+    font-size: 0.9em;
+    color: #555;
+    flex-grow: 1;
+  }
+
+  /* Buy button styling */
+  .buy-btn {
+    background-color: #e74c3c;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 16px;
+    cursor: pointer;
+    margin-top: 10px;
+    align-self: center;
+    width: 80%;
+    font-size: 1em;
+  }
+

@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<link rel="stylesheet" type="text/css" href="more products.css">
+<style>
+        body {
+            background-color: #F4F8EB; /* Light blue background */
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+      
+      body {
+        position: relative;
+      }
+      
+      /* Overlay background with transparency and subtle blur */
+      .cart-modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(4px);
+        animation: fadeIn 0.3s;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+      }
+      
+      /* Modal container with rounded corners and shadow for depth */
+      .cart-modal-content {
+        background: #fff;
+        border-radius: 12px;
+        max-width: 700px;
+        width: 90%;
+        padding: 20px;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        display: flex;
+        flex-direction: column;
+        animation: slideIn 0.3s ease-out;
+      }
+      
+      /* Header styling */
+      .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+      }
+      
+      .modal-header h2 {
+        margin: 0;
+        font-size: 1.5em;
+        font-weight: 600;
+      }
+      
+      /* Close button styling */
+      .close-cart {
+        font-size: 1.8em;
+        cursor: pointer;
+        color: #999;
+        transition: color 0.2s;
+      }
+      
+      .close-cart:hover {
+        color: #333;
+      }
+      
+      /* Cart table styles */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-family: Arial, sans-serif;
+      }
+      
+      thead {
+        background-color: #f9f9f9;
+      }
+      
+      th, td {
+        padding: 12px 8px;
+        text-align: left;
+        border-bottom: 1px solid #eee;
+      }
+      
+      th {
+        font-weight: 600;
+      }
+      
+      /* Totals and checkout styles */
+      .totals {
+        margin-top: 20px;
+        width: 100%;
+        font-family: Arial, sans-serif;
+      }
+      
+      .totals div {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px 0;
+      }
+      
+      .grand-total {
+        font-weight: bold;
+        font-size: 1.2em;
+      }
+      
+      /* Checkout button styles */
+      .checkout-btn {
+        background: #ff6f61;
+        color: #fff;
+        border: none;
+        padding: 12px 25px;
+        border-radius: 8px;
+        font-size: 1em;
+        cursor: pointer;
+        transition: background 0.2s;
+        margin-top: 20px;
+        width: 100%;
+      }
+      
+      .checkout-btn:hover {
+        background: #ff3b2e;
+      }
+      
+      /* Animations */
+      @keyframes fadeIn {
+        from {opacity: 0;}
+        to {opacity: 1;}
+      }
+      @keyframes slideIn {
+        from {transform: translateY(-50px); opacity: 0;}
+        to {transform: translateY(0); opacity: 1;}
+      }
+    
+</style>
+
+	
+<!-- Search Bar -->
+<div style="display: flex; justify-content: center; margin-top: 50px; align-items: center;">
+  <input type="text" placeholder="Search" id="searchInput" style="width: 600px; padding: 8px; font-size: 16px; border: 1px solid #ccc; border-radius: 4px; text-align: center;" />
+</div>
+
+<script>
+  // Add event listener for Enter key in the search input
+  document.getElementById('searchInput').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+      performSearch();
+    }
+  });
+
+  function performSearch() {
+    const query = document.getElementById('searchInput').value.toLowerCase();
+
+    // Get all product cards
+    const products = document.querySelectorAll('.product-card');
+
+    products.forEach(card => {
+      const title = card.querySelector('.product-title').textContent.toLowerCase();
+      const desc = card.querySelector('.product-desc').textContent.toLowerCase();
+
+      // Check if query is in title or description
+      if (title.includes(query) || desc.includes(query)) {
+        card.style.display = ''; // Show
+      } else {
+        card.style.display = 'none'; // Hide
+      }
+    });
+  }
+</script>
+<script>
+function search() {
+  const query = document.getElementById('searchInput').value;
+  alert('You searched for: ' + query);
+}
+</script>
+
+
+
+
+<!-- Navigation Bar -->
+<div class="navbar">
+  <a href="index.html" class="nav-button">Home</a>
+  <a href="products.html" class="nav-button">Products</a>
+  <a href="About Page.html" class="nav-button">About</a>
+  <a href="contact.html" class="nav-button">Contact</a>
+</div>
+
+<!-- Your element to appear below the nav, top right -->
+<div class="header-container">
+  <div class="top-right-below-nav">
+      <!-- Button for accessibility -->
+      <button id="cartButton" style="background:none; border:none; cursor:pointer;">
+        <img src="shopping-cart.png" alt="Cart" width="35" height="35" />
+        <span id="cart-count">0</span>
+      </button>
+  </div>
+</div>
+<!-- Rest of your page content -->
+<div class="main-content">
+  <!-- Page content goes here -->
+</div>
+
+
+
+<main>
+  <!-- Row 1: Product 1 on the left, Product 2 on the right -->
+  <div class="row">
+    <div class="product-card">
+      <div class="price-badge">P25.00</div>
+      <img src="eggplant.jpg" alt="Mixed Vegetable Basket" class="product-image" />
+      <div class="product-title">9. Egg Plants</div>
+      <div class="product-desc">
+        A colorful mix of seasonal, organic vegetables - perfect for your daily nutrition.
+      </div>
+      <button class="buy-btn" data-name="9. Egg Plants" data-image="eggplant.jpg">buy</button>
+    </div>
+    <div class="product-card second">
+      <div class="price-badge">P20.00</div>
+      <img src="cauliflower.jpg" alt="Mixed Vegetable Basket" class="product-image" />
+      <div class="product-title">10. Cauliflower</div>
+      <div class="product-desc">
+        A selection of fresh, organic fruits to boost your health and energy.
+      </div>
+      <button class="buy-btn" data-name="10. Cauliflower" data-image="cauliflower.jpg">buy</button>
+    </div>
+  </div>
+
+  <!-- Row 2: Product 3 on the left, Product 4 on the right -->
+  <div class="row">
+    <div class="product-card">
+      <div class="price-badge">P15.00</div>
+      <img src="sweetpotatos.jpg" alt="Vegetables" class="product-image" />
+      <div class="product-title">11. Sweet Potatos</div>
+      <div class="product-desc">
+        Add a fiery kick to your dishes with our farm fresh chili peppers
+      </div>
+      <button class="buy-btn" data-name="11. Sweet Potatos" data-image="sweetpotatos.jpg">buy</button>
+    </div>
+    <div class="product-card second">
+      <div class="price-badge">P15.00</div>
+      <img src="garlic.jpg" alt="Herbs" class="product-image" />
+      <div class="product-title">12. Garlic</div>
+      <div class="product-desc">
+        Aromatic and flavorful- great for cooking or eating raw with salads
+      </div>
+      <button class="buy-btn" data-name="12. Garlic" data-image="garlic.jpg">buy</button>
+    </div>
+  </div>
+
+<div class="row">
+    <div class="product-card">
+      <div class="price-badge">P60.00</div>
+      <img src="cabbage.jpg" alt="Mixed Vegetable Basket" class="product-image" />
+      <div class="product-title">13. Cabbages</div>
+      <div class="product-desc">
+       A vibrant assortment of bell peppers, garlic, and herbs-straight form the garden
+      </div>
+      <button class="buy-btn" data-name="13. Cabbages" data-image="cabbage.jpg">buy</button>
+    </div>
+    <div class="product-card second">
+      <div class="price-badge">P25.00</div>
+      <img src="beetroot.jpg" alt="Mixed Vegetable Basket" class="product-image" />
+      <div class="product-title">14. Beetroots</div>
+      <div class="product-desc">
+        Rich in fibre and antioxidants-streamed, roasted, or raw, its always a hit
+      </div>
+      <button class="buy-btn"data-name="14. Beetroots" data-image="beetroot.jpg">buy</button>
+    </div>
+  </div>
+
+  <!-- Row 2: Product 3 on the left, Product 4 on the right -->
+  <div class="row">
+    <div class="product-card">
+      <div class="price-badge">P15.00</div>
+      <img src="corn.jpg" alt="Vegetables" class="product-image" />
+      <div class="product-title">15. Corn</div>
+      <div class="product-desc">
+        Add a fiery kick to your dishes with our farm fresh chili peppers
+      </div>
+      <button class="buy-btn" data-name="7. Carrots" data-image="carrots.jpg">buy</button>
+    </div>
+    <div class="product-card second">
+      <div class="price-badge">P15.00</div>
+      <img src="geenp.jpg" alt="Herbs" class="product-image" />
+      <div class="product-title">16. Green Peppers</div>
+      <div class="product-desc">
+        Aromatic herbs to enhance your cooking and health.
+      </div>
+      <button class="buy-btn" data-name="7. Carrots" data-image="carrots.jpg">buy</button>
+    </div>
+  </div>
+</main>
+<!-- Cart Modal with Alibaba style -->
+<div id="cartModal" class="cart-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="cartModalLabel" aria-describedby="cartModalDesc">
+  <div class="cart-modal-content" role="document">
+    <div class="modal-header">
+      <h2 id="cartModalLabel">Your Cart</h2>
+      <span class="close-cart" aria-label="Close">&times;</span>
+    </div>
+    <!-- Table layout for cart items -->
+    <table>
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody id="cartItems"></tbody>
+    </table>
+    <!-- Totals -->
+    <div class="totals">
+      <div><span>Subtotal:</span> <span id="subtotal">P0.00</span></div>
+      <div><span>Sales Tax (10%):</span> <span id="salesTax">P0.00</span></div>
+      <div class="grand-total"><span>Grand Total:</span> <span id="grandTotal">P0.00</span></div>
+    </div>
+    <!-- Checkout Button -->
+    <button class="checkout-btn">Check out</button>
+  </div>
+</div>
+<script>
+  const cartItems = [];
+  let cartCount = 0;
+
+  document.querySelectorAll('.buy-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const name = btn.getAttribute('data-name');
+      const image = btn.getAttribute('data-image');
+      // Save product info to cart array
+      cartItems.push({ name: name, image: image });
+      cartCount++;
+      document.getElementById('cart-count').textContent = cartCount;
+    });
+  });
+
+  const modal = document.getElementById('cartModal');
+  const closeBtn = document.querySelector('.close-cart');
+  const cartItemsDiv = document.getElementById('cartItems');
+
+  document.getElementById('cartButton').addEventListener('click', () => {
+    updateCartItems();
+    modal.style.display = 'flex';
+    modal.setAttribute('aria-hidden', 'false');
+  });
+
+  closeBtn.onclick = () => {
+    modal.style.display = 'none';
+    modal.setAttribute('aria-hidden', 'true');
+  }
+
+  window.onclick = (event) => {
+    if (event.target == modal) {
+      modal.style.display = 'none';
+      modal.setAttribute('aria-hidden', 'true');
+    }
+  }
+
+  function updateCartItems() {
+    const tbody = document.getElementById('cartItems');
+    tbody.innerHTML = '';
+
+    if (cartItems.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; color:#999;">Your cart is empty.</td></tr>';
+      document.getElementById('subtotal').textContent = 'P0.00';
+      document.getElementById('salesTax').textContent = 'P0.00';
+      document.getElementById('grandTotal').textContent = 'P0.00';
+      return;
+    }
+
+    let subtotalAmount = 0;
+    let quantity = 1; // assuming quantity is 1 for each item
+
+    cartItems.forEach(item => {
+      // Here, for simplicity, assume each item has a fixed price based on your data
+      // You could extend this to include prices in your cart array if needed
+      let priceStr = '';
+      if (item.name.includes('Egg Plants')) priceStr = 'P20.00';
+      else if (item.name.includes('Cauliflower')) priceStr = 'P20.00';
+      else if (item.name.includes('Sweet Potatos')) priceStr = 'P15.00';
+      else if (item.name.includes('Garlic')) priceStr = 'P15.00';
+      else if (item.name.includes('Cabbages')) priceStr = 'P60.00';
+      else if (item.name.includes('Beetroots')) priceStr = 'P25.00';
+      else if (item.name.includes('Corn')) priceStr = 'P15.00';
+      else if (item.name.includes('Green Peppers')) priceStr = 'P15.00';
+      else priceStr = 'P0.00';
+
+      // Parse price
+      const priceNum = parseFloat(priceStr.replace('P', '').replace(',', '').replace('.00', ''));
+
+      const totalPrice = priceNum * quantity;
+      subtotalAmount += totalPrice;
+
+      // Format price and total
+      const formatPrice = 'P' + priceNum.toFixed(2);
+      const formatTotal = 'P' + totalPrice.toFixed(2);
+
+      tbody.innerHTML += `
+        <tr>
+          <td>${item.name}</td>
+          <td>${formatPrice}</td>
+          <td>${quantity}</td>
+          <td>${formatTotal}</td>
+        </tr>
+      `;
+    });
+
+    // Calculate tax and total
+    const salesTax = subtotalAmount * 0.10;
+    const grandTotal = subtotalAmount + salesTax;
+
+    document.getElementById('subtotal').textContent = 'P' + subtotalAmount.toFixed(2);
+    document.getElementById('salesTax').textContent = 'P' + salesTax.toFixed(2);
+    document.getElementById('grandTotal').textContent = 'P' + grandTotal.toFixed(2);
+  }
+</script>
+
+</body>
+</html>
